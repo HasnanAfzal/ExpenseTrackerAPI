@@ -12,9 +12,11 @@ export const addPaymentSource = async (req, res, next) => {
     }
 
     const { name, paymentTypeId } = req.body;
+    const { userId } = req;
     const paymentSource = new PaymentSourceModel({
       name,
       paymentTypeId,
+      userId,
     });
     const result = await paymentSource.save();
     return res.status(201).json(result);

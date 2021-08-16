@@ -3,6 +3,7 @@ import UnitsModel from "../models/units.js";
 
 export const addUnits = async (req, res, next) => {
   const { name } = req.body;
+  const { userId } = req;
 
   const errors = validationResult(req);
 
@@ -14,6 +15,7 @@ export const addUnits = async (req, res, next) => {
   const units = new UnitsModel({
     name,
     isActive: true,
+    userId,
   });
 
   try {

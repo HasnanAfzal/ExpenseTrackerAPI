@@ -47,6 +47,11 @@ const spendingsPerVendorSchema = new mongoose.Schema({
   deliveryCharges: Number,
   packingCharges: Number,
   taxes: Number,
+  userId: {
+    type: mongoose.Types.ObjectId,
+    ref: "User",
+    required: true,
+  },
 }, { timestamps: true });
 
 export default mongoose.model("SpendingsPerVendor", spendingsPerVendorSchema);

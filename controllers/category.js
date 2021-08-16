@@ -3,8 +3,10 @@ import CategoryModel from "../models/category.js";
 export const addCategory = async (req, res, next) => {
   try {
     const { name } = req.body;
+    const { userId } = req;
     const category = new CategoryModel({
       name,
+      userId,
     });
     const result = await category.save();
     return res.status(201).json(result);

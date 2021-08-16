@@ -6,8 +6,10 @@ export const addVendor = async (req, res, next) => {
       name, address, phoneNumbers, website, vendorTypeId,
     } = req.body;
 
+    const { userId } = req;
+
     const vendor = VendorModel({
-      name, address, phoneNumbers, website, vendorTypeId,
+      name, address, phoneNumbers, website, vendorTypeId, userId,
     });
 
     const result = await vendor.save();

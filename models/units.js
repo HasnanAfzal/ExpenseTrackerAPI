@@ -9,6 +9,11 @@ const unitsSchema = new mongoose.Schema({
     type: Boolean,
     required: true,
   },
-});
+  userId: {
+    type: mongoose.Types.ObjectId,
+    ref: "User",
+    required: true,
+  },
+}, { timestamps: true });
 
 export default mongoose.model("Unit", unitsSchema);

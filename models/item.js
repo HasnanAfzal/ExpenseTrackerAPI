@@ -10,6 +10,11 @@ const itemSchema = new mongoose.Schema({
     ref: "Category",
     required: true,
   },
-});
+  userId: {
+    type: mongoose.Types.ObjectId,
+    ref: "User",
+    required: true,
+  },
+}, { timestamps: true });
 
 export default mongoose.model("Item", itemSchema);

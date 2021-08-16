@@ -22,6 +22,11 @@ const spendingSchema = new mongoose.Schema({
     type: Date,
     required: true,
   },
+  userId: {
+    type: mongoose.Types.ObjectId,
+    ref: "User",
+    required: true,
+  },
 }, { timestamps: true });
 
 export default mongoose.model("Spending", spendingSchema);

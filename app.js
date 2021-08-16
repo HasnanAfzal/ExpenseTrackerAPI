@@ -12,11 +12,16 @@ import categoryRoutes from "./routes/category.js";
 import itemRoutes from "./routes/item.js";
 import spendingsController from "./routes/spendings.js";
 
+import authMiddleware from "./middlewares/auth.js";
+
 const app = express();
 
 app.use(bodyParser.json()); // application/json
 
 app.use(userRoutes);
+
+app.use(authMiddleware);
+
 app.use(unitsRoutes);
 app.use(paymentTypeRoutes);
 app.use(paymentSourceRoutes);

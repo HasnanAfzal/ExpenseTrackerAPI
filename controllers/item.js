@@ -4,10 +4,12 @@ export const addItem = async (req, res, next) => {
   try {
     const { name } = req.body;
     const { categoryId } = req.params;
+    const { userId } = req;
 
     const item = new ItemModel({
       name,
       categoryId,
+      userId,
     });
 
     const result = await item.save();

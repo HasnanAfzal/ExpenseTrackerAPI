@@ -9,12 +9,14 @@ export const addSpendings = async (req, res, next) => {
       vendorId, items, emi, paymentSourceId, deliveryCharges, packingCharges, taxes, spendingDate,
     } = req.body;
 
+    const { userId } = req;
+
     if (!items || !items.length) {
       throw new Error("Cannot add a spending without any items");
     }
 
     if (!emi) {
-      const itemsWithSpendingDate = items.map((item) => ({ ...item, spendingDate }));
+      const itemsWithSpendingDate = items.map((item) => ({ ...item, spendingDate, userId }));
 
       const spendings = await SpendingModel.insertMany(itemsWithSpendingDate, true);
 
@@ -63,7 +65,7 @@ export const addSpendings = async (req, res, next) => {
       for (let index = 0; index < duration.length - 1; index += 1) {
         const emiSpendingDate = moment(startDate).add(index, "month");
         arr.push({
-          ...i, emiAmount, spendingDate: emiSpendingDate,
+          ...i, emiAmount, spendingDate: emiSpendingDate, userId,
         });
       }
       return arr;
@@ -80,6 +82,7 @@ export const addSpendings = async (req, res, next) => {
       paymentSourceId,
       spendingDate,
       emi,
+      userId,
     });
 
     const results = await spendingsPerVendor.save();

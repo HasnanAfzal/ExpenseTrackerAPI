@@ -13,6 +13,11 @@ const vendorSchema = new mongoose.Schema({
     ref: "VendorType",
     required: true,
   },
-});
+  userId: {
+    type: mongoose.Types.ObjectId,
+    ref: "User",
+    required: true,
+  },
+}, { timestamps: true });
 
 export default mongoose.model("Vendor", vendorSchema);
